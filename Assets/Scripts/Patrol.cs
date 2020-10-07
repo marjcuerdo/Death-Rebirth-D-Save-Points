@@ -20,16 +20,16 @@ public class Patrol : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Border") {
-            Debug.Log("LOOP BACK");
+            //Debug.Log("LOOP BACK");
             direction = Vector2.Scale(direction, new Vector2(-1, 0));
             if (!facingRight)
             {
-                Debug.Log("Flip1");
+                //Debug.Log("Flip1");
                 Flip();
             }
             else if (facingRight)
             {
-                Debug.Log("Flip2");
+                //Debug.Log("Flip2");
                 Flip();
             }
         }

@@ -25,7 +25,6 @@ public class NextLevel : MonoBehaviour
     		// Save score
     		PlayerPrefs.SetInt("Player Score", sObj.score);
     		PlayerPrefs.SetInt("Player Health", hObj.health);
-    		Debug.Log("Current score is " + sObj.score.ToString());
 
     		SceneManager.LoadScene("Level2");
     	}

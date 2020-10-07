@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Score sObj;
     public NextLevel lObj;
 	SpriteRenderer sr; //
+    Color srOrigColor; //
 
     public GameObject spawnPoint1;
 
@@ -21,12 +22,15 @@ public class PlayerMovement : MonoBehaviour
 	bool crouch = false;
 	bool gotHurt = false;
     bool isDead = false;
+    bool gotHealth = false;
 
 	void Start() {
         sObj = GetComponent<Score>();
 		hObj = GetComponent<Health>();
         lObj = GetComponent<NextLevel>();
 		sr = GetComponent<SpriteRenderer>();
+        srOrigColor = sr.color;
+
 	}
 
     // Update is called once per frame
@@ -37,21 +41,36 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump")) 
         {
         	jump = true;
-        	Debug.Log("jumping");
+        	//Debug.Log("jumping");
         }
 
         if (Input.GetButtonDown("Crouch")) 
         {
         	crouch = true;
-        	Debug.Log("crouch down");
+        	//Debug.Log("crouch down");
         } else if (Input.GetButtonUp("Crouch")) {
         	crouch = false;
-        	Debug.Log("crouch up");
+        	//Debug.Log("crouch up");
         }
 
         if (gotHurt) {
-        	sr.color = new Color(0,0,1);
-        	gotHurt = false;
+            
+            sr.color = new Color(1,1,1,0.5f);
+        	
+            StartCoroutine("FadeBack");
+            //Debug.Log("Start Coroutine");
+             // coroutine
+        	//gotHurt = false;
+        }
+
+        if (gotHealth) {
+            //sr.color = new Color(0,1,0);
+            sr.color = Color.white;
+            sr.color = new Color (254/255f, 215/255f, 0f, 1f);
+            //sr.color = new Color(1f, 0.92f, 0.016f, 1f);
+            StartCoroutine("FadeBack");
+            //Debug.Log("Start Coroutine");
+            
         }
 
         // Restart level if death conditions are met
@@ -60,6 +79,23 @@ public class PlayerMovement : MonoBehaviour
             Application.LoadLevel(Application.loadedLevel);
 
         }
+    }
+
+    IEnumerator FadeBack() {
+        if (gotHealth) {
+            yield return new WaitForSeconds(0.5f);
+            sr.color = srOrigColor;
+            gotHealth = false;
+        }
+
+        if (gotHurt) {
+            yield return new WaitForSeconds(0.5f);
+            sr.color = srOrigColor;
+            gotHurt = false;
+        }
+        //sr.color = new Color(0,1,0);
+        
+        //Debug.Log("Finish Coroutine");
     }
 
     void FixedUpdate () 
@@ -106,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
 			gotHurt = true;
 
 
-			Debug.Log("got spike hurt");
+			//Debug.Log("got spike hurt");
 		}
 
         // When player gets health
@@ -115,15 +151,18 @@ public class PlayerMovement : MonoBehaviour
 
             // Health decrease by 1
             hObj.AddHealth();
+            //Destroy(col.gameObject);
 
-            Debug.Log("got healthpack");
+            gotHealth = true;
+
+            //Debug.Log("got healthpack");
         }
 
         // When player dies
         else if (col.gameObject.tag == "DeathZone") {
             // Respawn player to beg of level
 
-            Debug.Log("player has died");
+            //Debug.Log("player has died");
             isDead = true;
 
             //this.transform.position = spawnPoint1.transform.position;
@@ -132,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
         // When player reaches end of level
         else if (col.gameObject.tag == "Finish") {
 
-            Debug.Log("End of level");
+            //Debug.Log("End of level");
             lObj.LoadNextScene();
         }
     }
@@ -147,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
             gotHurt = true;
 
 
-            Debug.Log("got HIT");
+            //Debug.Log("got HIT");
         }
     }
 
