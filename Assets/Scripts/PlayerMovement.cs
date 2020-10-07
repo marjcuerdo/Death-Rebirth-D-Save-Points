@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public Health hObj;
     public Score sObj;
+    public NextLevel lObj;
 	SpriteRenderer sr; //
 
     public GameObject spawnPoint1;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 	void Start() {
         sObj = GetComponent<Score>();
 		hObj = GetComponent<Health>();
+        lObj = GetComponent<NextLevel>();
 		sr = GetComponent<SpriteRenderer>();
 	}
 
@@ -107,6 +109,16 @@ public class PlayerMovement : MonoBehaviour
 			Debug.Log("got spike hurt");
 		}
 
+        // When player gets health
+
+        else if (col.gameObject.tag == "Health") {
+
+            // Health decrease by 1
+            hObj.AddHealth();
+
+            Debug.Log("got healthpack");
+        }
+
         // When player dies
         else if (col.gameObject.tag == "DeathZone") {
             // Respawn player to beg of level
@@ -115,6 +127,13 @@ public class PlayerMovement : MonoBehaviour
             isDead = true;
 
             //this.transform.position = spawnPoint1.transform.position;
+        }
+
+        // When player reaches end of level
+        else if (col.gameObject.tag == "Finish") {
+
+            Debug.Log("End of level");
+            lObj.LoadNextScene();
         }
     }
 

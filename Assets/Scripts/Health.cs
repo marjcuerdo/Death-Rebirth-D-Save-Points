@@ -12,6 +12,10 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    void Awake() {
+        health = PlayerPrefs.GetInt("Player Health");
+    }
+
     void Update() {
 
     	if (health > numOfHearts) {
@@ -36,6 +40,15 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage) {
     	health -= damage;
+    }
+
+    public void AddHealth() {
+        health += 1;
+    }
+
+    public void OnApplicationQuit(){
+         PlayerPrefs.SetInt("Player Health", 5);
+         Debug.Log("Reset health");
     }
 
 }
