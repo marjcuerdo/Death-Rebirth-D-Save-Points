@@ -48,5 +48,7 @@ public class AnimateObject : MonoBehaviour
             Debug.Log("reset animation");
             lObj.LoadNextScene();
         }
+
+        
     }
 }

@@ -15,11 +15,18 @@ public class NextLevel : MonoBehaviour
     }
 
     public void LoadNextScene() {
-    	if (m_Scene.name == "Level1") {
 
-    		// Save score
-
+        if (m_Scene.name == "Pre-Test Survey") {
+            Debug.Log("Loading Level1");
+            SceneManager.LoadScene("Level1");
+        } else if (m_Scene.name == "Level1") {
+            Debug.Log("Loading Level2");
     		SceneManager.LoadScene("Level2");
-    	}
+    	} else if (m_Scene.name == "New Scene") {
+            SceneManager.LoadScene("Pre-Test Survey");
+        } else {
+            Debug.Log("Loading nothing :(");
+        
+        }
     }
 }

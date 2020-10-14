@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
     public int score = 0;
     //public int updatedScore;
 
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
 
     void Awake() {
     	score = PlayerPrefs.GetInt("Player Score");
@@ -16,7 +17,7 @@ public class Score : MonoBehaviour
 
     void Update() {
 
-    	scoreText.text = "SCORE: " + score.ToString();
+    	scoreText.text = "Score: " + score.ToString();
     }
 
     public void AddPoints(int points) {
