@@ -708,6 +708,8 @@ GameObject:
   - component: {fileID: 462195310}
   - component: {fileID: 462195309}
   - component: {fileID: 462195308}
+  - component: {fileID: 462195312}
+  - component: {fileID: 462195313}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Finish
@@ -819,12 +821,39 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462195307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.22, y: 0.4, z: 0}
+  m_LocalPosition: {x: 16.4, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462195312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462195307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b455456c6cb4d29b3a7a9f77b775a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animSpeed: 0.6
+  gObj: {fileID: 0}
+  lObj: {fileID: 0}
+--- !u!114 &462195313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462195307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd8cd47a679e4903b33e81b4c4c39c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,9 +2940,9 @@ MonoBehaviour:
   controller: {fileID: 1467955870}
   hObj: {fileID: 0}
   sObj: {fileID: 0}
-  lObj: {fileID: 0}
   spawnPoint1: {fileID: 1923898915}
   runSpeed: 40
+  advanceLevel: 0
 --- !u!114 &1467955876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,7 +2952,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1467955867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd8cd47a679e4903b33e81b4c4c39c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 03d0ca80a02c94b68bf25da50e24327a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sObj: {fileID: 0}

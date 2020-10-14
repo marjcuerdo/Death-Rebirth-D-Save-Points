@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public Health hObj;
     public Score sObj;
-    public NextLevel lObj;
+    //public NextLevel lObj;
 	SpriteRenderer sr; //
     Color srOrigColor; //
 
@@ -23,11 +23,12 @@ public class PlayerMovement : MonoBehaviour
 	bool gotHurt = false;
     bool isDead = false;
     bool gotHealth = false;
+    public bool advanceLevel = false;
 
 	void Start() {
         sObj = GetComponent<Score>();
 		hObj = GetComponent<Health>();
-        lObj = GetComponent<NextLevel>();
+        //lObj = GetComponent<NextLevel>();
 		sr = GetComponent<SpriteRenderer>();
         srOrigColor = sr.color;
 
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (gotHealth) {
             //sr.color = new Color(0,1,0);
-            sr.color = Color.white;
+            //sr.color = Color.white;
             sr.color = new Color (254/255f, 215/255f, 0f, 1f);
             //sr.color = new Color(1f, 0.92f, 0.016f, 1f);
             StartCoroutine("FadeBack");
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
             Application.LoadLevel(Application.loadedLevel);
 
         }
+
     }
 
     IEnumerator FadeBack() {
@@ -170,9 +172,11 @@ public class PlayerMovement : MonoBehaviour
 
         // When player reaches end of level
         else if (col.gameObject.tag == "Finish") {
-
+            advanceLevel = true; 
+            PlayerPrefs.SetInt("Player Score", sObj.score);
+            PlayerPrefs.SetInt("Player Health", hObj.health);
             //Debug.Log("End of level");
-            lObj.LoadNextScene();
+            
         }
     }
 

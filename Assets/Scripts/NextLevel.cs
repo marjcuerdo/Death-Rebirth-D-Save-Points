@@ -9,13 +9,8 @@ public class NextLevel : MonoBehaviour
 	Scene m_Scene;
 	string sceneName;
 
-	public Score sObj;
-	public Health hObj;
-
     
     private void Start() {
-    	sObj = GetComponent<Score>();
-    	hObj = GetComponent<Health>();
     	m_Scene = SceneManager.GetActiveScene();
     }
 
@@ -23,8 +18,6 @@ public class NextLevel : MonoBehaviour
     	if (m_Scene.name == "Level1") {
 
     		// Save score
-    		PlayerPrefs.SetInt("Player Score", sObj.score);
-    		PlayerPrefs.SetInt("Player Health", hObj.health);
 
     		SceneManager.LoadScene("Level2");
     	}
