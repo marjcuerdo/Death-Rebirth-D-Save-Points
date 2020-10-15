@@ -14,11 +14,11 @@ public class AnimateObject : MonoBehaviour
     public float animSpeed = 0.6f;
 
     public PlayerMovement gObj;
-    public NextLevel lObj;
+    //public NextLevel lObj;
 
     void Start()
     {
-        lObj = GetComponent<NextLevel>();
+        //lObj = GetComponent<NextLevel>();
         gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
         //Get the Animator attached to the GameObject you are intending to animate.
@@ -42,11 +42,15 @@ public class AnimateObject : MonoBehaviour
             m_Animator.speed = animSpeed;
             m_Animator.enabled = true;
             yield return new WaitForSeconds(0.65f);
-            Debug.Log("running coroutine");
+            //Debug.Log("running coroutine");
             m_Animator.enabled = false;
+            //Debug.Log("stopped animation");/*
+            gObj.isNewGame = false;
+            Debug.Log("not a new game");
             gObj.advanceLevel = false;
-            Debug.Log("reset animation");
-            lObj.LoadNextScene();
+            Debug.Log("next level"); */
+            //Debug.Log("reset animation");
+            //lObj.LoadNextScene();
         }
 
         

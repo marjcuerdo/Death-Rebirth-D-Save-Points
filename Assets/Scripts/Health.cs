@@ -12,12 +12,29 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public PlayerMovement gObj;
+
 
     void Awake() {
-        health = PlayerPrefs.GetInt("Player Health");
+        // not available on first load
+        /*Debug.Log("getting player health");
+        health = PlayerPrefs.GetInt("Player Health");*/
+        gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        Debug.Log("isNewGame 2: " + gObj.isNewGame.ToString());
+        /*if (gObj.isNewGame == true)
+        {
+                Debug.Log("This is a new level");
+                
+        } */
     }
 
     void Update() {
+
+        if (gObj.isNewGame == false) {
+            Debug.Log("getting player health: " + PlayerPrefs.GetInt("Player Health").ToString());
+            health = PlayerPrefs.GetInt("Player Health");
+            Debug.Log("again player health: " + PlayerPrefs.GetInt("Player Health").ToString());
+        }
 
     	if (health > numOfHearts) {
     		health = numOfHearts;
@@ -37,6 +54,12 @@ public class Health : MonoBehaviour
     			hearts[i].enabled = false;
     		}
     	}
+
+
+    }
+
+    void Start() {    
+
     }
 
     public void TakeDamage(int damage) {
@@ -50,6 +73,7 @@ public class Health : MonoBehaviour
 
     public void OnApplicationQuit(){
          PlayerPrefs.SetInt("Player Health", 5);
+
          //Debug.Log("Reset health");
     }
 

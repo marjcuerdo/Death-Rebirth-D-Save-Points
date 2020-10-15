@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,11 +25,16 @@ public class PlayerMovement : MonoBehaviour
     bool isDead = false;
     bool gotHealth = false;
     public bool advanceLevel = false;
+    public bool isNewGame = true;
+
+    public NextLevel lObj;
 
 	void Start() {
         sObj = GetComponent<Score>();
 		hObj = GetComponent<Health>();
-        //lObj = GetComponent<NextLevel>();
+        //lObj = GetComponent<NextLevel>(); //
+        lObj = GameObject.Find("Chest").GetComponent<NextLevel>();
+
 		sr = GetComponent<SpriteRenderer>();
         srOrigColor = sr.color;
 
@@ -77,8 +83,12 @@ public class PlayerMovement : MonoBehaviour
         // Restart level if death conditions are met
         if (isDead) {
             isDead = false;
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
+        if (advanceLevel) {
+            lObj.LoadNextScene();
         }
 
     }
@@ -125,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
 
     	if(col.gameObject.tag == "Coins") {
-			Debug.Log("got coin");
+			//Debug.Log("got coin");
 
             // Add points to player score
             sObj.AddPoints(5);
@@ -172,9 +182,26 @@ public class PlayerMovement : MonoBehaviour
 
         // When player reaches end of level
         else if (col.gameObject.tag == "Finish") {
-            advanceLevel = true; 
+           // isNewGame = false;
+            //Debug.Log("Setting score");
             PlayerPrefs.SetInt("Player Score", sObj.score);
+            //Debug.Log("Score: " + sObj.score.ToString());
+            //Debug.Log("Setting health");
             PlayerPrefs.SetInt("Player Health", hObj.health);
+            //Debug.Log("Health: " + hObj.health.ToString());
+            //Debug.Log("finished setting");
+
+            isNewGame = false;
+            //Debug.Log("not a new game");
+            advanceLevel = true;
+           // Debug.Log("next level");
+            //Debug.Log("isNewGame 1: " + isNewGame.ToString());
+
+            //lObj.LoadNextScene();
+
+            //advanceLevel = true; 
+            
+            
             //Debug.Log("End of level");
             
         }

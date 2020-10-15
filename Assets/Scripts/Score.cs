@@ -11,12 +11,22 @@ public class Score : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    public PlayerMovement gObj;
+
     void Awake() {
-    	score = PlayerPrefs.GetInt("Player Score");
+        gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
+
+    void Start() {
+        
     }
 
     void Update() {
-
+        if (gObj.isNewGame == false) {
+            //Debug.Log("getting player score: " + PlayerPrefs.GetInt("Player Score").ToString());
+            score = PlayerPrefs.GetInt("Player Score");
+            //Debug.Log("again player score: " + PlayerPrefs.GetInt("Player Score").ToString());
+        }
     	scoreText.text = "Score: " + score.ToString();
     }
 
