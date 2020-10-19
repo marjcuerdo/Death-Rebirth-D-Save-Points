@@ -46,9 +46,9 @@ public class BegGame_AnimateObject : MonoBehaviour
             m_Animator.enabled = false;
             //Debug.Log("stopped animation");/*
             gObj.isNewGame = false;
-            Debug.Log("not a new game");
+            //Debug.Log("not a new game");
             gObj.advanceLevel = false;
-            Debug.Log("next level"); 
+            //Debug.Log("next level"); 
             //Debug.Log("reset animation");
             //lObj.LoadNextScene();
         }

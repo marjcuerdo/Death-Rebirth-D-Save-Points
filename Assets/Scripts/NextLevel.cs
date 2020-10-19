@@ -9,6 +9,9 @@ public class NextLevel : MonoBehaviour
 	Scene m_Scene;
 	string sceneName;
 
+    int gameVersion;
+    int [] versions = new int [] {1, 3};
+
     
     private void Start() {
     	m_Scene = SceneManager.GetActiveScene();
@@ -17,11 +20,12 @@ public class NextLevel : MonoBehaviour
     public void LoadNextScene() {
 
         if (m_Scene.name == "Pre-Test Survey") {
-            Debug.Log("Loading Level1");
-            SceneManager.LoadScene("Level1");
+            gameVersion = Random.Range(0,2);
+            Debug.Log(gameVersion);
 
-            // load different version every time
-            
+            SceneManager.LoadScene(versions[gameVersion]);
+            // load random version every time
+
         } else if (m_Scene.name == "Level1") {
             Debug.Log("Loading Level2");
     		SceneManager.LoadScene("Level2");

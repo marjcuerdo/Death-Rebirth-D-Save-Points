@@ -20,7 +20,7 @@ public class BegGame_Health : MonoBehaviour
         /*Debug.Log("getting player health");
         health = PlayerPrefs.GetInt("Player Health");*/
         gObj = GameObject.Find("Player").GetComponent<BegGame_PlayerMovement>();
-        Debug.Log("isNewGame 2: " + gObj.isNewGame.ToString());
+        //Debug.Log("isNewGame 2: " + gObj.isNewGame.ToString());
         /*if (gObj.isNewGame == true)
         {
                 Debug.Log("This is a new level");
@@ -31,9 +31,9 @@ public class BegGame_Health : MonoBehaviour
     void Update() {
 
         if (gObj.isNewGame == false) {
-            Debug.Log("getting player health: " + PlayerPrefs.GetInt("Player Health").ToString());
+            //Debug.Log("getting player health: " + PlayerPrefs.GetInt("Player Health").ToString());
             health = PlayerPrefs.GetInt("Player Health");
-            Debug.Log("again player health: " + PlayerPrefs.GetInt("Player Health").ToString());
+            //Debug.Log("again player health: " + PlayerPrefs.GetInt("Player Health").ToString());
             gObj.isNewGame = true;
         }
 
