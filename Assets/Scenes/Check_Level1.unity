@@ -5047,7 +5047,7 @@ MonoBehaviour:
   - {fileID: 114207173}
   - {fileID: 780185633}
   fullHeart: {fileID: 21300000, guid: 98bb3d22c1b58432fba023502cec39c5, type: 3}
-  emptyHeart: {fileID: 21300000, guid: f53fabbeffc0b47019b101e418b5186d, type: 3}
+  emptyHeart: {fileID: 21300000, guid: f8e6364eca28241c4a1cbbff7c3870c1, type: 3}
   gObj: {fileID: 0}
 --- !u!114 &1411735087
 MonoBehaviour:
