@@ -19,12 +19,18 @@ public class NextLevel : MonoBehaviour
         if (m_Scene.name == "Pre-Test Survey") {
             Debug.Log("Loading Level1");
             SceneManager.LoadScene("Level1");
+
+            // load different version every time
+            
         } else if (m_Scene.name == "Level1") {
             Debug.Log("Loading Level2");
     		SceneManager.LoadScene("Level2");
     	} else if (m_Scene.name == "New Scene") {
             SceneManager.LoadScene("Pre-Test Survey");
-        } else {
+        } else if (m_Scene.name == "BegGame_Level1") {
+            SceneManager.LoadScene("BegGame_Level2");
+        } else
+        { 
             Debug.Log("Loading nothing :(");
         
         }

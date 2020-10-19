@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class BegGame_Health : MonoBehaviour
 {
     public int health = 5;
     public int numOfHearts = 5;
@@ -12,14 +12,14 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    public PlayerMovement gObj;
+    public BegGame_PlayerMovement gObj;
 
 
     void Awake() {
         // not available on first load
         /*Debug.Log("getting player health");
         health = PlayerPrefs.GetInt("Player Health");*/
-        gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        gObj = GameObject.Find("Player").GetComponent<BegGame_PlayerMovement>();
         Debug.Log("isNewGame 2: " + gObj.isNewGame.ToString());
         /*if (gObj.isNewGame == true)
         {

@@ -8,18 +8,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimateObject : MonoBehaviour
+public class BegGame_AnimateObject : MonoBehaviour
 {
     Animator m_Animator;
     public float animSpeed = 0.6f;
 
-    public PlayerMovement gObj;
+    public BegGame_PlayerMovement gObj;
     //public NextLevel lObj;
 
     void Start()
     {
         //lObj = GetComponent<NextLevel>();
-        gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        gObj = GameObject.Find("Player").GetComponent<BegGame_PlayerMovement>();
 
         //Get the Animator attached to the GameObject you are intending to animate.
         m_Animator = GetComponent<Animator>();
