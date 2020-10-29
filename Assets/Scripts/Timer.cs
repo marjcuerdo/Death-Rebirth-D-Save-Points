@@ -11,10 +11,11 @@ public class Timer : MonoBehaviour
     public bool timerIsRunning = false;
 
     public PlayerMovement gObj; 
+    public ResetLevel rObj;
 
     void Awake() {
     	gObj = GameObject.Find("Player").GetComponent<PlayerMovement>(); // instantiate to access Player
-
+        rObj = GameObject.Find("God").GetComponent<ResetLevel>();
     	//if (gObj.isNewGame == false) {
             //Debug.Log("getting time: " + PlayerPrefs.GetFloat("TimeInc").ToString());
             // get current time
@@ -26,6 +27,10 @@ public class Timer : MonoBehaviour
 
 	void Start() {
 		timerIsRunning = true;
+        /*if (rObj.restartedLevel != null) {
+            timeRemaining = PlayerPrefs.GetFloat("TimeRem");
+            timeInc = PlayerPrefs.GetFloat("TimeInc");
+        }*/
 	}
 
 	void Update()
@@ -50,6 +55,8 @@ public class Timer : MonoBehaviour
                 //timerIsRunning = false; // use to stop timer when time is met
             }
         }
+
+
     }
 
     // display text in UTC format

@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public SaveGame sgObj;
     public ResetLevel rObj;
 
-	SpriteRenderer sr; //
-    Color srOrigColor; //
+	SpriteRenderer sr; 
+    Color srOrigColor; 
 
 	public float runSpeed = 300;
 
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     bool gotHealth = false;
     public bool advanceLevel = false;
     public bool isNewGame = true;
+    public bool lvlSavePointExists = false;
 
     public Vector3 levelRespawn;
 
@@ -37,32 +38,37 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer[] sprites;
 
     void Awake() {
-        //mObj = GameObject.Find("MenuPause").GetComponent<Menu>();
         sgObj = GameObject.Find("God").GetComponent<SaveGame>();
         rObj = GameObject.Find("God").GetComponent<ResetLevel>();
+
+        // if game is new then use original respawn point when player dies
         if (isNewGame) {
             levelRespawn = this.transform.position;
             sgObj.spawnPoint1 = this.transform.position;
             isNewGame = false;
+        } else if (lvlSavePointExists) {
+
+            // only if save exists for level
+            // if a save exists, put player in last saved position
+                this.transform.position = sgObj.spawnPoint1;
         } else {
-            this.transform.position = sgObj.spawnPoint1;
+            levelRespawn = this.transform.position;
+            //sgObj.spawnPoint1 = this.transform.position;
+            isNewGame = false;
         }
     }
 
-	void Start() {
-        
+	void Start() {       
+        sgObj = GameObject.Find("God").GetComponent<SaveGame>();
+        rObj = GameObject.Find("God").GetComponent<ResetLevel>();
         sObj = GetComponent<Score>();
 		hObj = GetComponent<Health>();
         tObj = GetComponent<Timer>();
-        //mObj = GameObject.Find("MenuPause").GetComponent<Menu>();
-        //rObj = GetComponent<RespawnObjects>();
         lObj = GameObject.Find("Chest").GetComponent<NextLevel>();
 
 		sr = GetComponent<SpriteRenderer>();
-
         srOrigColor = sr.color;
-
-        sprites = GetComponentsInChildren<SpriteRenderer>();
+        sprites = GetComponentsInChildren<SpriteRenderer>(); // get colors for sprites
 
         /*for (int i=0; i < spriteRenderers.Count; ++i) {
             colors.Add(spriteRenderers.material.color);
@@ -96,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (gotHurt) {
-
+            // if hurt, flash
             for (int i=0; i <sprites.Length; i++) {
                 sprites[i].color = new Color(1,1,1,0.5f);
             }
@@ -107,51 +113,45 @@ public class PlayerMovement : MonoBehaviour
                 renderer.material.color = colors[i];
             }*/
 
+            // fadeback to original color
             StartCoroutine("FadeBack");
-            //Debug.Log("Start Coroutine");
-             // coroutine
-        	//gotHurt = false;
         }
 
+        // change color when health pack
         if (gotHealth) {
-            //sr.color = new Color(0,1,0);
-            //sr.color = Color.white;
             for (int i=0; i <sprites.Length; i++) {
                 sprites[i].color = new Color (254/255f, 215/255f, 0f, 1f);
             }
-            //sr.color = new Color (254/255f, 215/255f, 0f, 1f);
-            //sr.color = new Color(1f, 0.92f, 0.016f, 1f);
             StartCoroutine("FadeBack");
-            //Debug.Log("Start Coroutine");
-            
         }
 
         // Respawn to SAVE POINT if death conditions are met
         if (isDead) {
             
-
-            this.transform.position = sgObj.spawnPoint1;
+            if (lvlSavePointExists) {
+                this.transform.position = sgObj.spawnPoint1; 
+            } else {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
 
             rObj.Reset();
 
-            
-            /*if (saved) {
-                this.transform.position = spawnPoint1;
-            } else {
-                this.transform.position = levelRespawn; // move player back to last save point
-            }*/
-            //Application.LoadLevel(Application.loadedLevel);
-            //rObj.Respawn();
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             isDead = false;
         }
 
+        // if chest is reached, load next level
         if (advanceLevel) {
+            // reset level respawn point
+            rObj.restartedLevel = false;
+            // remember that savepoint doesn't exist for the next level yet
+            lvlSavePointExists = false;
+
             lObj.LoadNextScene();
         }
 
     }
 
+    // briefly change player color
     IEnumerator FadeBack() {
         if (gotHealth) {
             yield return new WaitForSeconds(0.5f);
@@ -166,12 +166,8 @@ public class PlayerMovement : MonoBehaviour
             for (int i=0; i <sprites.Length; i++) {
                 sprites[i].color = srOrigColor;
             }
-            //sr.color = srOrigColor;
             gotHurt = false;
         }
-        //sr.color = new Color(0,1,0);
-        
-        //Debug.Log("Finish Coroutine");
     }
 
     void FixedUpdate () 
@@ -188,18 +184,10 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.SetFloat("TimeInc", tObj.timeInc);
 
             isDead = true;
-
-            // for CHECKPOINTS (possibly)
-            //this.transform.position = spawnPoint1.transform.position;
-            //hObj.health = 5; // reset health
-            //reset level
-
         }
-    	
     }
 
     // Player triggers with colliders
-
     void OnTriggerEnter2D(Collider2D col) {
 
     	if(col.gameObject.tag == "Coins") {
@@ -207,13 +195,11 @@ public class PlayerMovement : MonoBehaviour
 
             // Add points to player score
             sObj.AddPoints(5);
-            col.gameObject.SetActive(false);
-			//Destroy(col.gameObject); // destroy coin
+            col.gameObject.SetActive(false); // make coin inactive
 		} 
 
 
 		// When player gets hurt
-
 		else if (col.gameObject.tag == "Enemy") {
 
 			// Health decrease by 1
@@ -221,13 +207,9 @@ public class PlayerMovement : MonoBehaviour
 
 			// Change player's color
 			gotHurt = true;
-
-
-			//Debug.Log("got spike hurt");
 		}
 
         // When player gets health
-
         else if (col.gameObject.tag == "Health") {
 
             // Health decrease by 1
@@ -235,49 +217,30 @@ public class PlayerMovement : MonoBehaviour
             //Destroy(col.gameObject);
             col.gameObject.SetActive(false);
             gotHealth = true;
-
-            //Debug.Log("got healthpack");
         }
 
         // When player dies
         else if (col.gameObject.tag == "DeathZone") {
-            // Respawn player to beg of level
 
-            //Debug.Log("player has died");
             // continue timer when player dies
             PlayerPrefs.SetFloat("TimeRem", tObj.timeRemaining); 
             PlayerPrefs.SetFloat("TimeInc", tObj.timeInc);
-            isDead = true;
-
-            //this.transform.position = spawnPoint1.transform.position;
+            isDead = true; // triggers last saved point
         }
 
         // When player reaches end of level
         else if (col.gameObject.tag == "Finish") {
-           // isNewGame = false;
-            //Debug.Log("Setting score");
+
+            // continue timer
             PlayerPrefs.SetFloat("TimeRem", tObj.timeRemaining);
             PlayerPrefs.SetFloat("TimeInc", tObj.timeInc);
+
+            // save score and health
             PlayerPrefs.SetInt("Player Score", sObj.score);
-            //Debug.Log("Score: " + sObj.score.ToString());
-            //Debug.Log("Setting health");
             PlayerPrefs.SetInt("Player Health", hObj.health);
-            //Debug.Log("Health: " + hObj.health.ToString());
-            //Debug.Log("finished setting");
 
             isNewGame = false;
-            //Debug.Log("not a new game");
             advanceLevel = true;
-           // Debug.Log("next level");
-            //Debug.Log("isNewGame 1: " + isNewGame.ToString());
-
-            //lObj.LoadNextScene();
-
-            //advanceLevel = true; 
-            
-            
-            //Debug.Log("End of level");
-            
         }
     }
 
@@ -289,17 +252,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Change player's color
             gotHurt = true;
-
-
-            //Debug.Log("got HIT");
         }
     }
-
-    public void OnApplicationQuit(){
-         //spawnPoint1 = levelRespawn;
-
-         //Debug.Log("Reset health");
-    }
-
 
 }
