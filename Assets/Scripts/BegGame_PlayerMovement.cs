@@ -27,6 +27,8 @@ public class BegGame_PlayerMovement : MonoBehaviour
     public bool advanceLevel = false;
     public bool isNewGame = true;
 
+    SpriteRenderer[] sprites;
+
     public NextLevel lObj;
 
 	void Start() {
@@ -37,6 +39,7 @@ public class BegGame_PlayerMovement : MonoBehaviour
 
 		sr = GetComponent<SpriteRenderer>();
         srOrigColor = sr.color;
+        sprites = GetComponentsInChildren<SpriteRenderer>();
 
 	}
 
@@ -62,7 +65,9 @@ public class BegGame_PlayerMovement : MonoBehaviour
 
         if (gotHurt) {
             
-            sr.color = new Color(1,1,1,0.5f);
+            for (int i=0; i <sprites.Length; i++) {
+                sprites[i].color = new Color(1,1,1,0.5f);
+            }
         	
             StartCoroutine("FadeBack");
             //Debug.Log("Start Coroutine");
@@ -73,7 +78,9 @@ public class BegGame_PlayerMovement : MonoBehaviour
         if (gotHealth) {
             //sr.color = new Color(0,1,0);
             //sr.color = Color.white;
-            sr.color = new Color (254/255f, 215/255f, 0f, 1f);
+            for (int i=0; i <sprites.Length; i++) {
+                sprites[i].color = new Color (254/255f, 215/255f, 0f, 1f);
+            }
             //sr.color = new Color(1f, 0.92f, 0.016f, 1f);
             StartCoroutine("FadeBack");
             //Debug.Log("Start Coroutine");
@@ -96,13 +103,17 @@ public class BegGame_PlayerMovement : MonoBehaviour
     IEnumerator FadeBack() {
         if (gotHealth) {
             yield return new WaitForSeconds(0.5f);
-            sr.color = srOrigColor;
+            for (int i=0; i <sprites.Length; i++) {
+                sprites[i].color = srOrigColor;
+            }
             gotHealth = false;
         }
 
         if (gotHurt) {
             yield return new WaitForSeconds(0.5f);
-            sr.color = srOrigColor;
+            for (int i=0; i <sprites.Length; i++) {
+                sprites[i].color = srOrigColor;
+            }
             gotHurt = false;
         }
         //sr.color = new Color(0,1,0);

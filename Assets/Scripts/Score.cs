@@ -7,7 +7,6 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     public int score = 0;
-    //public int updatedScore;
 
     public TextMeshProUGUI scoreText;
 
@@ -22,7 +21,7 @@ public class Score : MonoBehaviour
     }
 
     void Update() {
-        if (gObj.isNewGame == false) {
+        if (gObj.isNewGame == false || gObj.isDead == true) {
             //Debug.Log("getting player score: " + PlayerPrefs.GetInt("Player Score").ToString());
             score = PlayerPrefs.GetInt("Player Score");
             //Debug.Log("again player score: " + PlayerPrefs.GetInt("Player Score").ToString());

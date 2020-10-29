@@ -21,10 +21,10 @@ public class NextLevel : MonoBehaviour
 
         if (m_Scene.name == "Pre-Test Survey") {
             // FIX ORDERING HERE
-            gameVersion = Random.Range(0,5);
-            Debug.Log(gameVersion);
+            //gameVersion = Random.Range(0,5);
+            //Debug.Log(gameVersion);
 
-            SceneManager.LoadScene(versions[gameVersion]);
+            SceneManager.LoadScene("Level1");
             // load random version every time
         } else if (m_Scene.name == "BegLevel_A") {
             SceneManager.LoadScene("Level1");
@@ -37,9 +37,7 @@ public class NextLevel : MonoBehaviour
         } else if (m_Scene.name == "Level1") {
             Debug.Log("Loading Level2");
     		SceneManager.LoadScene("Level2");
-    	} else if (m_Scene.name == "New Scene") {
-            SceneManager.LoadScene("Pre-Test Survey");
-        } else if (m_Scene.name == "BegGame_Level1") {
+    	} else if (m_Scene.name == "BegGame_Level1") {
             SceneManager.LoadScene("BegGame_Level2");
         } else
         { 
