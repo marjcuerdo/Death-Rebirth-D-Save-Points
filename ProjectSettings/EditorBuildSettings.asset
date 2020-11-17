@@ -6,36 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Pre-Test Survey.unity
+    path: Assets/Scenes/StartScreen.unity
     guid: 42d770aee0ac143e79422e9ce1a68b9e
-  - enabled: 0
-    path: Assets/Scenes/BegLevel_A.unity
-    guid: 84d0026d8c1de475980167c7520ea7b9
-  - enabled: 0
-    path: Assets/Scenes/BegGame_B.unity
-    guid: 40ee2ea038aa040ab9d701badf4a219c
-  - enabled: 0
-    path: Assets/Scenes/Check_C.unity
-    guid: fc06da4ffff9d4f4797ed1e988364e3f
-  - enabled: 0
-    path: Assets/Scenes/Save_D.unity
-    guid: 53113efdb894c473ba9facc976cfba05
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 0d4481316ca444c56be0ff0c5af2e490
-  - enabled: 0
-    path: Assets/Scenes/BegGame_Level1.unity
-    guid: 06cb764ddf732450d89b36ffc213a48a
-  - enabled: 0
-    path: Assets/Scenes/BegGame_Level2.unity
-    guid: d0bcdff17d0e14878828d899956ec988
-  - enabled: 0
-    path: Assets/Scenes/Check_Level1.unity
-    guid: 59cf7641f1c304fc49c617d879a1c906
-  - enabled: 0
-    path: Assets/Scenes/Save_Level1.unity
-    guid: 5e377a0189a5845ffa84236d9125c722
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 100622a05b2334717b5dc7e435491f1a
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 27936015382bc4248854e51dc487868e
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: 81837245f28dc41ba804af74c93c1c50
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 80f3169b3b9a44f6094d0c92e16da2b1
   m_configObjects: {}

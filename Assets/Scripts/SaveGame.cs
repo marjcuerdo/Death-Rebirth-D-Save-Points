@@ -19,6 +19,9 @@ public class SaveGame : MonoBehaviour
     public Score sObj;
     public PlayerMovement gObj;
 
+    public AudioSource saveSound;
+    //public AudioClip saveClip;
+
     void Awake() {
     	// initialize spawn point at beg of level
     	spawnPoint1 = GameObject.Find("Player").transform.position; 
@@ -41,14 +44,12 @@ public class SaveGame : MonoBehaviour
 
    		// clear arrays for a new save
    		if (boolStates.Count > 1) {
-   			Debug.Log("clearing");
+   			//Debug.Log("clearing");
    			boolStates.Clear();
    			positions.Clear();
    		}
 
-   		// save score and health
-        PlayerPrefs.SetInt("Player Score", sObj.score);
-        PlayerPrefs.SetInt("Player Health", hObj.health); 
+   		
 
         // save player position
         spawnPoint1 = GameObject.Find("Player").transform.position; 
@@ -66,6 +67,15 @@ public class SaveGame : MonoBehaviour
              rotations.Add(go.transform.rotation);
          }
 
+         // save score and health
+        PlayerPrefs.SetInt("Player Score", sObj.score);
+        PlayerPrefs.SetInt("Player Health", hObj.health); 
+        //Debug.Log("setting health to: " + hObj.health);
+        PlayerPrefs.SetInt("Extra Hearts", hObj.currentExtraHearts); 
+        //Debug.Log("setting extra to: " + hObj.currentExtraHearts);
+        PlayerPrefs.SetInt("Took Damage", (hObj.tookDamage ? 1 : 0));
+
+        saveSound.Play();
         Debug.Log("Saved!");
     }
 }

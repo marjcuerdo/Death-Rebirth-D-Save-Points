@@ -6,16 +6,15 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
 	public TextMeshProUGUI timeText;
-	public float timeRemaining = 300; 
+	public float timeRemaining = 600; 
 	public float timeInc = 0;
     public bool timerIsRunning = false;
 
     public PlayerMovement gObj; 
-    public ResetLevel rObj;
 
     void Awake() {
     	gObj = GameObject.Find("Player").GetComponent<PlayerMovement>(); // instantiate to access Player
-        rObj = GameObject.Find("God").GetComponent<ResetLevel>();
+
     	//if (gObj.isNewGame == false) {
             //Debug.Log("getting time: " + PlayerPrefs.GetFloat("TimeInc").ToString());
             // get current time
@@ -27,25 +26,27 @@ public class Timer : MonoBehaviour
 
 	void Start() {
 		timerIsRunning = true;
-        /*if (rObj.restartedLevel != null) {
-            timeRemaining = PlayerPrefs.GetFloat("TimeRem");
-            timeInc = PlayerPrefs.GetFloat("TimeInc");
-        }*/
 	}
 
 	void Update()
     {
+
+        /*if (gObj.isNewGame == false) {
+            timeInc = PlayerPrefs.GetFloat("TimeInc");
+            timeRemaining = PlayerPrefs.GetFloat("TimeRem");
+        }*/
+
     	// while timer is running
         if (timerIsRunning)
         {
-        	// when 5 mins or 300 secs aren't up yet
-            if (timeRemaining > 1 )
-            {
+        	// when 10 mins or 600 secs aren't up yet
+            //if (timeRemaining > 1 )
+            //{
                 timeRemaining -= Time.deltaTime; // decrement from 5 mins/300 secs
                 timeInc += Time.deltaTime; // increment to current playing time
                 DisplayTime("Current playing time: ", timeInc); // continuously update time
-            }
-            else
+            //}
+            /*else
             {
                 //Debug.Log("Time has been met!");
                 timeInc += Time.deltaTime; // continue incrementing after 5 mins
@@ -53,10 +54,8 @@ public class Timer : MonoBehaviour
                 DisplayTime("Required play time met! ", timeInc); // notify user time's up
                 timeRemaining = 0;
                 //timerIsRunning = false; // use to stop timer when time is met
-            }
+            }*/
         }
-
-
     }
 
     // display text in UTC format
@@ -72,8 +71,10 @@ public class Timer : MonoBehaviour
 
     // reset timer when exit game
     public void OnApplicationQuit(){
-         PlayerPrefs.SetFloat("TimeRem", 300);
+         PlayerPrefs.SetFloat("TimeRem", 600);
          PlayerPrefs.SetFloat("TimeInc", 0);
          //Debug.Log("Reset score");
     }
+
+
 }

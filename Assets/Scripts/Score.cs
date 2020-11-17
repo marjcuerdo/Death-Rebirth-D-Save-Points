@@ -12,8 +12,16 @@ public class Score : MonoBehaviour
 
     public PlayerMovement gObj;
 
+    public Health hObj;
+
     void Awake() {
         gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        hObj = GameObject.Find("Player").GetComponent<Health>();
+
+        if (gObj.isNewGame == false) {
+            score = PlayerPrefs.GetInt("Player Score");
+            //countToFifty = PlayerPrefs.GetInt("CountFifty"); // running more than once
+        }
     }
 
     void Start() {
@@ -21,16 +29,19 @@ public class Score : MonoBehaviour
     }
 
     void Update() {
-        if (gObj.isNewGame == false || gObj.isDead == true) {
-            //Debug.Log("getting player score: " + PlayerPrefs.GetInt("Player Score").ToString());
-            score = PlayerPrefs.GetInt("Player Score");
-            //Debug.Log("again player score: " + PlayerPrefs.GetInt("Player Score").ToString());
-        }
-    	scoreText.text = "Score: " + score.ToString();
+
+    	scoreText.text = score.ToString();
     }
 
     public void AddPoints(int points) {
     	score += points;
+
+        // add to health every 50 pts 
+        if (score % 50 == 0) {
+            //hObj.health += 1;
+            hObj.AddHealth();
+            Debug.Log("HEALTH: " + hObj.health);
+        }
     	//updatedScore = score;
     }
 

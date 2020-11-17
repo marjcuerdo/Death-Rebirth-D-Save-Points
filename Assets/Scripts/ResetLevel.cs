@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +7,9 @@ public class ResetLevel : MonoBehaviour
 {
 
 	public SaveGame sgObj;
+    public Health hObj;
+    public Score sObj;
+
 	public Timer tObj;
 	public bool restartedLevel = false;
 
@@ -15,6 +18,8 @@ public class ResetLevel : MonoBehaviour
     {
       	sgObj = GetComponent<SaveGame>();
       	tObj = GameObject.Find("Player").GetComponent<Timer>();
+        hObj = GameObject.Find("Player").GetComponent<Health>();
+        sObj = GameObject.Find("Player").GetComponent<Score>();
     }
 
     public void RestartLevel() {
@@ -27,8 +32,14 @@ public class ResetLevel : MonoBehaviour
 
     public void Reset() {
     	// retrieve score and health when game was saved
-        PlayerPrefs.GetInt("Player Score");
-        PlayerPrefs.GetInt("Player Health"); 
+        sObj.score = PlayerPrefs.GetInt("Player Score");
+        hObj.currentExtraHearts = PlayerPrefs.GetInt("Extra Hearts");
+        hObj.health = PlayerPrefs.GetInt("Player Health"); 
+        Debug.Log("getting health: " + hObj.health);
+        Debug.Log("getting extra: " + hObj.currentExtraHearts);
+        hObj.j = 0;
+        hObj.k = 0;
+        hObj.tookDamage = (PlayerPrefs.GetInt("Took Damage") != 0);
 
         // set objects back to active/inactive
         for (int i= 0; i < sgObj.boolStates.Count; i++)
@@ -51,7 +62,7 @@ public class ResetLevel : MonoBehaviour
          	}
          	 // place in original position
              sgObj.allMovingObjects[i].transform.position = sgObj.positions[i];
-             Debug.Log(sgObj.positions[i]);
+             //Debug.Log(sgObj.positions[i]);
 
          }
         

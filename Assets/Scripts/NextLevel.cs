@@ -8,10 +8,6 @@ public class NextLevel : MonoBehaviour
 
 	Scene m_Scene;
 	string sceneName;
-
-    int gameVersion;
-    int [] versions = new int [] {1, 2, 3, 4}; // scene numbers for each game version
-
     
     private void Start() {
     	m_Scene = SceneManager.GetActiveScene();
@@ -19,26 +15,27 @@ public class NextLevel : MonoBehaviour
 
     public void LoadNextScene() {
 
-        if (m_Scene.name == "Pre-Test Survey") {
-            // FIX ORDERING HERE
-            //gameVersion = Random.Range(0,5);
-            //Debug.Log(gameVersion);
-
+        if (m_Scene.name == "StartScreen") {
             SceneManager.LoadScene("Level1");
-            // load random version every time
-        } else if (m_Scene.name == "BegLevel_A") {
-            SceneManager.LoadScene("Level1");
-        } else if (m_Scene.name == "BegGame_B") {
-            SceneManager.LoadScene("BegGame_Level1");
-        } else if (m_Scene.name == "Check_C") {
-            SceneManager.LoadScene("Check_Level1");
-        } else if (m_Scene.name == "Save_D") {
-            SceneManager.LoadScene("Save_Level1");
         } else if (m_Scene.name == "Level1") {
             Debug.Log("Loading Level2");
     		SceneManager.LoadScene("Level2");
-    	} else if (m_Scene.name == "BegGame_Level1") {
-            SceneManager.LoadScene("BegGame_Level2");
+    	} else if (m_Scene.name == "Level2") {
+            SceneManager.LoadScene("Level3");
+        } else if (m_Scene.name == "Level3") {
+            SceneManager.LoadScene("Level4");
+        } else if (m_Scene.name == "Level4") {
+            SceneManager.LoadScene("Level5");
+        } else if (m_Scene.name == "Level5") {
+            SceneManager.LoadScene("WinScreen");
+        } else if (m_Scene.name == "WinScreen") {
+            
+            PlayerPrefs.SetFloat("TimeRem", 600);
+            PlayerPrefs.SetFloat("TimeInc", 0);
+            PlayerPrefs.SetInt("Player Score", 0);
+            PlayerPrefs.SetInt("Player Health", 5);
+            PlayerPrefs.SetInt("Extra Hearts", 0);
+            SceneManager.LoadScene("Level1");
         } else
         { 
             Debug.Log("Loading nothing :(");

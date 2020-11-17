@@ -7,23 +7,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AnimateObject : MonoBehaviour
 {
     Animator m_Animator;
-    public float animSpeed = 0.6f;
+    Animator m_Animator2;
+
+    public float animSpeed = 1f;
 
     public PlayerMovement gObj;
+    public CharacterController2D cObj;
     //public NextLevel lObj;
+    public bool isJumping;
 
     void Start()
     {
         //lObj = GetComponent<NextLevel>();
         gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
-
+        cObj = GameObject.Find("Player").GetComponent<CharacterController2D>();
         //Get the Animator attached to the GameObject you are intending to animate.
+
         m_Animator = GetComponent<Animator>();
+        m_Animator2 = GetComponent<Animator>();
+
+        //m_Animation = GetComponent<Animation>();
         m_Animator.enabled = false;
+        m_Animator2.enabled = false;
     }
 
     void Update()
@@ -33,6 +43,10 @@ public class AnimateObject : MonoBehaviour
         {
             //Send the message to the Animator to activate the trigger parameter named "Jump"
             StartCoroutine("PlayAnimation");
+        }
+
+        if (cObj.m_Grounded && isJumping) {
+        	StartCoroutine("PlayAnimation");
         }
     }
 
@@ -53,6 +67,16 @@ public class AnimateObject : MonoBehaviour
             //lObj.LoadNextScene();
         }
 
+        if (cObj.m_Grounded && isJumping) {
+        	Debug.Log("animating jump");
+        	m_Animator2.speed = animSpeed;
+        	m_Animator2.enabled = true;
+        	//cObj.GetComponent<SpriteRenderer>().enabled = false;
+        	m_Animator2.Play("1", 0, 0.0f);
+            yield return new WaitForSeconds(0.25f);
+            m_Animator2.enabled = false;
+            isJumping = false;
+        }
         
     }
 }
