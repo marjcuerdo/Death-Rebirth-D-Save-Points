@@ -35,8 +35,6 @@ public class ResetLevel : MonoBehaviour
         sObj.score = PlayerPrefs.GetInt("Player Score");
         hObj.currentExtraHearts = PlayerPrefs.GetInt("Extra Hearts");
         hObj.health = PlayerPrefs.GetInt("Player Health"); 
-        Debug.Log("getting health: " + hObj.health);
-        Debug.Log("getting extra: " + hObj.currentExtraHearts);
         hObj.j = 0;
         hObj.k = 0;
         hObj.tookDamage = (PlayerPrefs.GetInt("Took Damage") != 0);

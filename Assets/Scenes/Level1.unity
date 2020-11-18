@@ -1589,7 +1589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406343919}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00000011920929, z: -10}
+  m_LocalPosition: {x: 0.29999924, y: 2.209999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1336524585}
@@ -2116,8 +2116,8 @@ GameObject:
   m_Component:
   - component: {fileID: 500963216}
   - component: {fileID: 500963215}
-  - component: {fileID: 500963214}
   - component: {fileID: 500963213}
+  - component: {fileID: 500963214}
   m_Layer: 0
   m_Name: Eye (4)
   m_TagString: Enemy
@@ -2146,8 +2146,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &500963214
-CircleCollider2D:
+--- !u!61 &500963214
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2160,8 +2160,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.48
+  m_Size: {x: 0.96, y: 0.96}
+  m_EdgeRadius: 0
 --- !u!212 &500963215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2399,7 +2409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00000011920929, z: -10}
+  m_LocalPosition: {x: 0.29999924, y: 2.209999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1507714205}
@@ -4717,7 +4727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829228366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.29999924, y: 2.209999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1618905679}
@@ -8785,8 +8795,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1717568025}
   - component: {fileID: 1717568024}
-  - component: {fileID: 1717568023}
   - component: {fileID: 1717568022}
+  - component: {fileID: 1717568023}
   m_Layer: 0
   m_Name: Eye (10)
   m_TagString: Enemy
@@ -8815,8 +8825,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1717568023
-CircleCollider2D:
+--- !u!61 &1717568023
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8829,8 +8839,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.48
+  m_Size: {x: 0.96, y: 0.96}
+  m_EdgeRadius: 0
 --- !u!212 &1717568024
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19531,8 +19551,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1945284707}
   - component: {fileID: 1945284706}
-  - component: {fileID: 1945284705}
   - component: {fileID: 1945284704}
+  - component: {fileID: 1945284705}
   m_Layer: 0
   m_Name: Eye (12)
   m_TagString: Enemy
@@ -19561,8 +19581,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1945284705
-CircleCollider2D:
+--- !u!61 &1945284705
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -19575,8 +19595,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.48
+  m_Size: {x: 0.96, y: 0.96}
+  m_EdgeRadius: 0
 --- !u!212 &1945284706
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19983,8 +20013,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1980459822}
   - component: {fileID: 1980459821}
-  - component: {fileID: 1980459820}
   - component: {fileID: 1980459819}
+  - component: {fileID: 1980459820}
   m_Layer: 0
   m_Name: Eye (11)
   m_TagString: Enemy
@@ -20013,8 +20043,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1980459820
-CircleCollider2D:
+--- !u!61 &1980459820
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -20027,8 +20057,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.48
+  m_Size: {x: 0.96, y: 0.96}
+  m_EdgeRadius: 0
 --- !u!212 &1980459821
 SpriteRenderer:
   m_ObjectHideFlags: 0
