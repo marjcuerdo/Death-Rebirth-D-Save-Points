@@ -18,13 +18,13 @@ public class Menu : MonoBehaviour
 		foreach (Transform child in this.transform)
          {
          	if (menuShown == false) {
-         		if (Input.GetKeyDown(KeyCode.Escape))
+         		if (Input.GetKeyDown(KeyCode.Tab))
              {
                  child.gameObject.SetActive(true);
                  menuShown = true;
              }
             } else if (menuShown) {
-				if (Input.GetKeyDown(KeyCode.Escape))
+				if (Input.GetKeyDown(KeyCode.Tab))
              	{
                  child.gameObject.SetActive(false);
                  menuShown = false;
