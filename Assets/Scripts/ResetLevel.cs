@@ -9,6 +9,7 @@ public class ResetLevel : MonoBehaviour
 	public SaveGame sgObj;
     public Health hObj;
     public Score sObj;
+    public PlayerMovement gObj;
 
 	public Timer tObj;
 	public bool restartedLevel = false;
@@ -17,27 +18,42 @@ public class ResetLevel : MonoBehaviour
     void Start()
     {
       	sgObj = GetComponent<SaveGame>();
+        gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
       	tObj = GameObject.Find("Player").GetComponent<Timer>();
         hObj = GameObject.Find("Player").GetComponent<Health>();
         sObj = GameObject.Find("Player").GetComponent<Score>();
     }
 
     public void RestartLevel() {
-    	// continue timer when player's health runs out
+    	// continue timer 
         PlayerPrefs.SetFloat("TimeRem", tObj.timeRemaining); 
         PlayerPrefs.SetFloat("TimeInc", tObj.timeInc);
+        //PlayerPrefs.SetInt("Player Health", 5);
+        //PlayerPrefs.SetInt("Player Score", 0);
+        //PlayerPrefs.SetInt("Extra Hearts", 0);
         restartedLevel = true; // used to keep timer running after level restarts
     	SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Reset() {
-    	// retrieve score and health when game was saved
-        sObj.score = PlayerPrefs.GetInt("Player Score");
-        hObj.currentExtraHearts = PlayerPrefs.GetInt("Extra Hearts");
-        hObj.health = PlayerPrefs.GetInt("Player Health"); 
-        hObj.j = 0;
-        hObj.k = 0;
-        hObj.tookDamage = (PlayerPrefs.GetInt("Took Damage") != 0);
+
+        if (gObj.lvlSavePointExists)  {
+            sObj.score = PlayerPrefs.GetInt("Score");
+            hObj.currentExtraHearts = PlayerPrefs.GetInt("Hearts");
+            hObj.health = PlayerPrefs.GetInt("Health"); 
+            hObj.j = 0;
+            hObj.k = 0;
+            hObj.tookDamage = (PlayerPrefs.GetInt("Damage") != 0); 
+        } else {
+            // retrieve score and health from beg of level
+            sObj.score = PlayerPrefs.GetInt("Player Score");
+            hObj.currentExtraHearts = PlayerPrefs.GetInt("Extra Hearts");
+            hObj.health = PlayerPrefs.GetInt("Player Health"); 
+            hObj.j = 0;
+            hObj.k = 0;
+            hObj.tookDamage = (PlayerPrefs.GetInt("Took Damage") != 0);           
+        }
+
 
         // set objects back to active/inactive
         for (int i= 0; i < sgObj.boolStates.Count; i++)

@@ -18,10 +18,11 @@ public class ReverseScore : MonoBehaviour
         gObj = GameObject.Find("Player").GetComponent<ReversePlayerMovement>();
         hObj = GameObject.Find("Player").GetComponent<ReverseHealth>();
 
-        if (gObj.isNewGame == false) {
+
+        if (gObj.isNewGame == false && gObj.lvlSavePointExists == false ) {
             score = PlayerPrefs.GetInt("Player Score");
-            //countToFifty = PlayerPrefs.GetInt("CountFifty"); // running more than once
-        }
+            //Debug.Log("!lvlSavePointExists");
+        } 
     }
 
     void Start() {

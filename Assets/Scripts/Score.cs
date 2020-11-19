@@ -18,17 +18,23 @@ public class Score : MonoBehaviour
         gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
         hObj = GameObject.Find("Player").GetComponent<Health>();
 
-        if (gObj.isNewGame == false) {
+        if (gObj.isNewGame == false && gObj.lvlSavePointExists == false ) {
             score = PlayerPrefs.GetInt("Player Score");
-            //countToFifty = PlayerPrefs.GetInt("CountFifty"); // running more than once
-        }
-    }
+            //Debug.Log("!lvlSavePointExists");
+        } 
 
-    void Start() {
-        
     }
 
     void Update() {
+        /*if (gObj.lvlSavePointExists)  {
+            if (scoreSaved) {
+
+                score = PlayerPrefs.GetInt("Score"); /// running wrong
+                Debug.Log("saved score was: " + score); 
+                scoreSaved = false;
+            }
+        }*/
+
     	scoreText.text = score.ToString();
     }
 
@@ -39,13 +45,14 @@ public class Score : MonoBehaviour
         if (score % 50 == 0) {
             //hObj.health += 1;
             hObj.AddHealth();
-            Debug.Log("HEALTH: " + hObj.health);
+           // Debug.Log("HEALTH: " + hObj.health);
         }
     	//updatedScore = score;
     }
 
     public void OnApplicationQuit(){
          PlayerPrefs.SetInt("Player Score", 0);
+         PlayerPrefs.SetInt("Score", 0);
          //Debug.Log("Reset score");
     }
 }

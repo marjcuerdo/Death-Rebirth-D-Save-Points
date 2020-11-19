@@ -31,11 +31,11 @@ public class Health : MonoBehaviour
 
         gObj = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-        if (gObj.isNewGame == false) {
+        if (gObj.isNewGame == false && gObj.lvlSavePointExists == false) {
             //health = PlayerPrefs.GetInt("Player Health");
             currentExtraHearts = PlayerPrefs.GetInt("Extra Hearts");
             health = PlayerPrefs.GetInt("Player Health");
-            //Debug.Log("getting health: " + health);
+            //Debug.Log("!lvlSavePointExists");
             //Debug.Log("getting extra");
             //j = PlayerPrefs.GetInt("JCounter");
             //k = PlayerPrefs.GetInt("KCounter");
@@ -45,10 +45,21 @@ public class Health : MonoBehaviour
             //gObj.isNewGame = true;
         }
 
+        if (gObj.lvlSavePointExists == true) {
+            //Debug.Log("lvlSavePointExists");
+            health = PlayerPrefs.GetInt("Player Health");
+            currentExtraHearts = PlayerPrefs.GetInt("Player Hearts");
+            tookDamage = (PlayerPrefs.GetInt("Player Damage") != 0);
+            j = 0;
+            k = 0;
+        }
+
 
     }
 
     void Update() {
+
+
 
         if (health > numOfHearts) {
             currentExtraHearts = health - numOfHearts; 

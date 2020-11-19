@@ -68,12 +68,21 @@ public class SaveGame : MonoBehaviour
          }
 
          // save score and health
-        PlayerPrefs.SetInt("Player Score", sObj.score);
+        PlayerPrefs.SetInt("Score", sObj.score);
+        Debug.Log("setting score to: " + sObj.score);
+        PlayerPrefs.SetInt("Health", hObj.health); 
+        Debug.Log("setting health to: " + hObj.health);
+        PlayerPrefs.SetInt("Hearts", hObj.currentExtraHearts); 
+        //Debug.Log("setting extra to: " + hObj.currentExtraHearts);
+        PlayerPrefs.SetInt("Damage", (hObj.tookDamage ? 1 : 0));
+
+        //sObj.scoreSaved = true;
+       /* PlayerPrefs.SetInt("Player Score", sObj.score);
         PlayerPrefs.SetInt("Player Health", hObj.health); 
         //Debug.Log("setting health to: " + hObj.health);
         PlayerPrefs.SetInt("Extra Hearts", hObj.currentExtraHearts); 
         //Debug.Log("setting extra to: " + hObj.currentExtraHearts);
-        PlayerPrefs.SetInt("Took Damage", (hObj.tookDamage ? 1 : 0));
+        PlayerPrefs.SetInt("Took Damage", (hObj.tookDamage ? 1 : 0));*/
 
         saveSound.Play();
         Debug.Log("Saved!");

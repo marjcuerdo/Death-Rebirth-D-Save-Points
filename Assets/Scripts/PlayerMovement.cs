@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
             sgObj.spawnPoint1 = this.transform.position;
             isNewGame = false;
         } else if (lvlSavePointExists) {
-
             // only if save exists for level
             // if a save exists, put player in last saved position
                 this.transform.position = sgObj.spawnPoint1;
@@ -103,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         if (Input.GetButtonDown("Jump")) 
@@ -153,13 +153,14 @@ public class PlayerMovement : MonoBehaviour
         // Restart level if death conditions are met
         if (isDead) {
             deathCounter += 1; // increment death
-            Debug.Log(deathCounter);
+           // Debug.Log(deathCounter);
             PlayerPrefs.SetInt("Player Deaths", deathCounter); ///////////////////
 
             if (lvlSavePointExists) {
                 this.transform.position = sgObj.spawnPoint1; 
+
             } else {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name); // wrong
             }
 
             rObj.Reset();
@@ -265,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
 
 			// Health decrease by 1
 			hObj.TakeDamage(1);
-            Debug.Log("HEALTH: " + hObj.health);
+            //Debug.Log("HEALTH: " + hObj.health);
             hObj.tookDamage = true; /////
 
 			// Change player's color
@@ -281,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Health decrease by 1
             hObj.AddHealth();
-            Debug.Log("HEALTH: " + hObj.health);
+            //Debug.Log("HEALTH: " + hObj.health);
 
             // make health pack inactive
             col.gameObject.SetActive(false);

@@ -31,11 +31,11 @@ public class ReverseHealth : MonoBehaviour
 
         gObj = GameObject.Find("Player").GetComponent<ReversePlayerMovement>();
 
-        if (gObj.isNewGame == false) {
+        if (gObj.isNewGame == false && gObj.lvlSavePointExists == false) {
             //health = PlayerPrefs.GetInt("Player Health");
             currentExtraHearts = PlayerPrefs.GetInt("Extra Hearts");
             health = PlayerPrefs.GetInt("Player Health");
-            //Debug.Log("getting health: " + health);
+            //Debug.Log("!lvlSavePointExists");
             //Debug.Log("getting extra");
             //j = PlayerPrefs.GetInt("JCounter");
             //k = PlayerPrefs.GetInt("KCounter");
@@ -43,6 +43,15 @@ public class ReverseHealth : MonoBehaviour
             k = 0;
             tookDamage = (PlayerPrefs.GetInt("Took Damage") != 0);
             //gObj.isNewGame = true;
+        }
+
+        if (gObj.lvlSavePointExists == true) {
+            //Debug.Log("lvlSavePointExists");
+            health = PlayerPrefs.GetInt("Player Health");
+            currentExtraHearts = PlayerPrefs.GetInt("Player Hearts");
+            tookDamage = (PlayerPrefs.GetInt("Player Damage") != 0);
+            j = 0;
+            k = 0;
         }
 
 
