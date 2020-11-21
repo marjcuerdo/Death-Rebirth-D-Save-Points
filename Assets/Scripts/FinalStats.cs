@@ -22,7 +22,7 @@ public class FinalStats : MonoBehaviour
         scoreText.text = PlayerPrefs.GetInt("Player Score").ToString();
         deathsText.text = PlayerPrefs.GetInt("Player Deaths").ToString();
         //timeText.text = PlayerPrefs.GetInt("TimeInc").ToString();
-        Debug.Log("TIME: " + PlayerPrefs.GetFloat("Player Score").ToString());
+        //Debug.Log("TIME: " + PlayerPrefs.GetFloat("Player Score").ToString());
         DisplayTime(PlayerPrefs.GetFloat("TimeInc"));
         medal = GetComponent<SpriteRenderer>();
 
