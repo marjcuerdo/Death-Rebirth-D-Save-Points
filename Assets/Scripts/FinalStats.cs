@@ -40,9 +40,9 @@ public class FinalStats : MonoBehaviour
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        if (timeToDisplay <= 240) {
+        if (timeToDisplay <= 510) {
             medal.sprite = goldMedal;
-        } else if (timeToDisplay <= 360) {
+        } else if (timeToDisplay <= 630) {
             medal.sprite = silverMedal;
         } else {
             medal.sprite = bronzeMedal;
