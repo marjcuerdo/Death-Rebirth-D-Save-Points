@@ -19,18 +19,17 @@ public class ReverseTimer : MonoBehaviour
     	gObj = GameObject.Find("Player").GetComponent<ReversePlayerMovement>(); // instantiate to access Player
         sObj = GameObject.Find("Player").GetComponent<ReverseScore>();
         hObj = GameObject.Find("Player").GetComponent<ReverseHealth>();
-    	//if (gObj.isNewGame == false) {
-            //Debug.Log("getting time: " + PlayerPrefs.GetFloat("TimeInc").ToString());
-            // get current time
-            timeInc = PlayerPrefs.GetFloat("TimeInc");
-            timeRemaining = PlayerPrefs.GetFloat("TimeRem");
-            Debug.Log(timeRemaining);
-            //Debug.Log("time again: " + PlayerPrefs.GetFloat("TimeInc").ToString());
-        //}
     }
 
 	void Start() {
 		timerIsRunning = true;
+
+        if (PlayerPrefs.GetFloat("TimeInc") > 0) {
+            timeInc = PlayerPrefs.GetFloat("TimeInc");
+            timeRemaining = PlayerPrefs.GetFloat("TimeRem");
+        }
+
+        gObj.isNewGame = false;
 	}
 
 	void Update()
