@@ -69,6 +69,7 @@ public class ResetLevel : MonoBehaviour
          	if (sgObj.allMovingObjects[i].GetComponent<Rigidbody2D>() != null) {
          	// stop movement/remove forces on objects
          	 sgObj.allMovingObjects[i].GetComponent<Rigidbody2D>().velocity = Vector3.zero; 
+              sgObj.allMovingObjects[i].GetComponent<Rigidbody2D>().angularVelocity = 0; 
          	 // return to original rotation
          	 sgObj.allMovingObjects[i].transform.rotation = sgObj.rotations[i]; 
          	 //sgObj.allMovingObjects[i].GetComponent<Rigidbody2D>().Sleep();
